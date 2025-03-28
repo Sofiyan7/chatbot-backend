@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
 <head>
     <meta charset="UTF-8">
     <title>Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <div class="container">
@@ -20,23 +19,23 @@
                 </div>
             </div>
             <div class="chatbox__messages">
-                <div></div>
+                <!-- Messages will appear here -->
             </div>
             <div class="chatbox__footer">
-                <input type="text" placeholder="Write a message...">
+                <input type="text" placeholder="Write a message..." id="chatInput">
                 <button class="chatbox__send--footer send__button">Send</button>
             </div>
         </div>
         <div class="chatbox__button">
-            <button><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" /></button>
+            <button id="toggleChat"><img src="{{ url_for('static', filename='images/chatbox-icon.svg') }}" /></button>
         </div>
     </div>
 </div>
 
-    <script>
-        $SCRIPT_ROOT = {{ request.script_root|tojson }};
-    </script>
-    <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
-
+<script>
+    // Initialize global variable for Flask's root URL
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
 </body>
 </html>
